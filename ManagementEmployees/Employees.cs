@@ -28,9 +28,10 @@ namespace ManagementEmployees
         {
         }
 
-        public void Add(string idEmployees, string fullName, string dateOfBirth,string address ,string position, int salary)
+        public void Add()
         {
-            this.idEmployees = idEmployees;
+            Console.WriteLine("Enter new id for Employee!!!");
+            this.idEmployees = Convert.ToString(Console.ReadLine());
             Console.WriteLine("Enter full name employees :");
             this.fullName = Convert.ToString(Console.ReadLine());
             Console.WriteLine("Enter date of birthday employees :");
@@ -38,9 +39,6 @@ namespace ManagementEmployees
             Console.WriteLine("Enter position employees :");
             this.address = Convert.ToString(Console.ReadLine());
             Console.WriteLine("Enter address employees :");
-            this.address = Convert.ToString(Console.ReadLine());
-            Console.WriteLine("Enter address employees :");
-
             this.position = Convert.ToString(Console.ReadLine());
             Console.WriteLine("Enter salary employees :");
             this.salary = int.Parse(Console.ReadLine());
