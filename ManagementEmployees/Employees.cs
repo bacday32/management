@@ -28,7 +28,7 @@ namespace ManagementEmployees
         {
         }
 
-        public void Add()
+        public void AddEmployee()
         {
             Console.WriteLine("Enter new id for Employee!!!");
             this.idEmployees = Convert.ToString(Console.ReadLine());
@@ -47,11 +47,14 @@ namespace ManagementEmployees
         {
 
         }
-        public void Show()
+        public void Display()
         {
-            
+            Console.WriteLine("id employees : {0},full name {1}, date of birthday {2},address {3},postion {4},salary {5}", idEmployees, fullName, dateOfBirth, address, position, salary);
         }
-
+        public override string ToString()
+        { 
+            return this.idEmployees + ","+this.fullName+","+this.dateOfBirth+","+this.address+","+this.position+","+this.salary;
+        }
 
     }
 }
