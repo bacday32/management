@@ -28,7 +28,7 @@ namespace ManagementEmployees
         {
         }
 
-        public void AddEmployee()
+        public void InputEmployee()
         {
             Console.WriteLine("Enter new id for Employee!!!");
             this.idEmployees = Convert.ToString(Console.ReadLine());
