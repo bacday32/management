@@ -19,14 +19,14 @@ namespace ManagementEmployees
             // read file csv
             string file = @"C:\Users\Desktop-win-bac\Documents\Visual Studio 2015\Projects\ManagementEmployees\InforEmployee.csv";
 
-            var filePath = File.ReadAllLines(file);            
+            var filePath = File.ReadAllLines(file);
             //loop file , get value add in list
             foreach (var line in filePath)
-            {             
+            {
                 var value = line.Split(',');
-                Employees employees = new Employees { idEmployees = value[0], fullName = value[1], dateOfBirth = value[2], address = value[3], position = value[4], salary = int.Parse(value[5]) };
+                Employees employees = new Employees { idEmployees = int.Parse(value[0]), fullName = value[1], dateOfBirth = value[2], address = value[3], position = value[4], salary = int.Parse(value[5]) };
                 list.Add(employees);
-            }           
+            }
             do
             {
                 Options();
@@ -36,36 +36,21 @@ namespace ManagementEmployees
                     //add new employ in file
                     case 1:
                         // create new  employee                   
-                        Employees newEmployee = new Employees();
+                        Employees newEmployee = new Employees();                        
+                        newEmployee.idEmployees = list[list.Count - 1].idEmployees++;
                         //enter infor
-                        newEmployee.InputEmployee();                       
-                        foreach (Employees item in list)
-                        {
-                            if(list.Exists(n => n.idEmployees == newEmployee.idEmployees))
-                            {
-                                Console.WriteLine("id employess existed!!!");
-                                Console.ReadLine();
-                                break;
-                            }
-                            else
-                            {
-                                //insert employee in file
-                                File.AppendAllText(file, "\n" + newEmployee.ToString());
-                                Console.WriteLine("You have added 1 new employee!!!! ");
-                                Console.ReadLine();
-                            }
-                            break;
-                        }
-
+                        newEmployee.InputEmployee();
+                        //append in file            
+                        File.AppendAllText(file, "\n" + newEmployee.ToString(), Encoding.UTF8);
+                        Console.WriteLine("You have added 1 new employee!!!! ");
+                        Console.ReadLine();
                         break;
-
                     case 2:
-
                         try
                         {
                             Console.WriteLine("Enter id Employees you want remove:");
                             //get in remove
-                            string idRemove = Console.ReadLine();
+                            int idRemove = int.Parse(Console.ReadLine());
                             // get employee with id = id remove  
                             Employees employRemove = list.First(s => s.idEmployees == idRemove);
                             //remove employee in list
@@ -75,7 +60,7 @@ namespace ManagementEmployees
                             foreach (Employees item in list)
                             {
                                 //write list string in file
-                                File.WriteAllLines(file, strings);
+                                File.WriteAllLines(file, strings, Encoding.UTF8);
                             }
                             Console.WriteLine("SUCCESSFUL!!!");
                             Console.ReadLine();
@@ -95,17 +80,23 @@ namespace ManagementEmployees
                             try
                             {
                                 Console.WriteLine("Enter id employee you want repair: ");
-                                string idRepair = Console.ReadLine();
+                                int idRepair = int.Parse(Console.ReadLine());
+                                //get employee have id = id repair
                                 Employees employee = list.First(s => s.idEmployees == idRepair);
+                                //get index of employee in list
                                 int index = list.IndexOf(employee);
+                                //enter infor repair
                                 Employees employeeRepair = InputRepair(employee, idRepair);
+                                //insert employee repair in list
                                 list.Insert(index, employeeRepair);
-
+                                //remove employee
                                 list.Remove(employee);
+                                // convert list object to list string
                                 List<string> strings = list.Select(s => s.ToString()).ToList();
                                 foreach (Employees item in list)
                                 {
-                                    File.WriteAllLines(file, strings);
+                                    //write file
+                                    File.WriteAllLines(file, strings, Encoding.UTF8);
                                 }
                                 Console.WriteLine("SUCCESSFUL!!!");
                                 Console.WriteLine(employeeRepair);
@@ -133,7 +124,8 @@ namespace ManagementEmployees
                                     try
                                     {
                                         Console.WriteLine("Enter id employee you want find: ");
-                                        string idFind = Console.ReadLine();
+                                        int idFind = int.Parse(Console.ReadLine());
+                                        //get employee with id
                                         Employees employee = list.First(s => s.idEmployees == idFind);
                                         Console.WriteLine(employee);
                                         Console.ReadLine();
@@ -155,6 +147,7 @@ namespace ManagementEmployees
                                     {
                                         Console.WriteLine("Enter name employee you want find: ");
                                         string nameFind = Console.ReadLine();
+                                        //get employee with name
                                         Employees employee = list.First(s => s.fullName == nameFind);
                                         Console.WriteLine(employee);
                                         Console.ReadLine();
@@ -187,7 +180,7 @@ namespace ManagementEmployees
                             Console.WriteLine("4-----Last-----");
                             int num = int.Parse(Console.ReadLine());
 
-                            
+
                             //Console.WriteLine("Employee Current : " + list[indexDetail]);
                             switch (num)
                             {
@@ -201,7 +194,7 @@ namespace ManagementEmployees
                                     }
                                     else
                                     {
-                                        Console.WriteLine("<<<<<this is the first employee!!!>>>>>"+ list[indexDetail]);
+                                        Console.WriteLine("<<<<<this is the first employee!!!>>>>>" + list[indexDetail]);
                                     }
                                     Console.ReadLine();
                                     break;
@@ -231,7 +224,7 @@ namespace ManagementEmployees
                             }
                         }
                         while (true);
-                        
+
                     case 7:
                         break;
                     default:
@@ -261,7 +254,7 @@ namespace ManagementEmployees
             Console.WriteLine("7:-----Exit-----");
 
         }
-        static Employees InputRepair(Employees employee, string idRepair)
+        static Employees InputRepair(Employees employee, int idRepair)
         {
             Employees employeeRepair = new Employees();
             Console.WriteLine(employee);
@@ -278,6 +271,6 @@ namespace ManagementEmployees
             employeeRepair.salary = int.Parse(Console.ReadLine());
             return employeeRepair;
         }
-        
+
     }
 }
