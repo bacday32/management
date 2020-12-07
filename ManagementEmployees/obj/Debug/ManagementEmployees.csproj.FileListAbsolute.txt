@@ -1,6 +1,6 @@
-c:\users\desktop-win-bac\documents\visual studio 2015\Projects\ManagementEmployees\ManagementEmployees\bin\Debug\ManagementEmployees.exe.config
-c:\users\desktop-win-bac\documents\visual studio 2015\Projects\ManagementEmployees\ManagementEmployees\bin\Debug\ManagementEmployees.exe
-c:\users\desktop-win-bac\documents\visual studio 2015\Projects\ManagementEmployees\ManagementEmployees\bin\Debug\ManagementEmployees.pdb
-c:\users\desktop-win-bac\documents\visual studio 2015\Projects\ManagementEmployees\ManagementEmployees\obj\Debug\ManagementEmployees.csprojResolveAssemblyReference.cache
-c:\users\desktop-win-bac\documents\visual studio 2015\Projects\ManagementEmployees\ManagementEmployees\obj\Debug\ManagementEmployees.exe
-c:\users\desktop-win-bac\documents\visual studio 2015\Projects\ManagementEmployees\ManagementEmployees\obj\Debug\ManagementEmployees.pdb
+C:\Users\Admin\Documents\management\ManagementEmployees\bin\Debug\ManagementEmployees.exe.config
+C:\Users\Admin\Documents\management\ManagementEmployees\obj\Debug\ManagementEmployees.exe
+C:\Users\Admin\Documents\management\ManagementEmployees\obj\Debug\ManagementEmployees.pdb
+C:\Users\Admin\Documents\management\ManagementEmployees\bin\Debug\ManagementEmployees.exe
+C:\Users\Admin\Documents\management\ManagementEmployees\bin\Debug\ManagementEmployees.pdb
+C:\Users\Admin\Documents\management\ManagementEmployees\obj\Debug\ManagementEmployees.csprojResolveAssemblyReference.cache

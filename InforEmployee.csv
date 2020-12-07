@@ -1,16 +1,11 @@
-IdEmployeee,FullName,DateOfBirth,Address,Position,Salary
-Id001,Nguy?n Van A,05/11/1980,Qu?ng Nam,K? Toán,8000000
-Id002,Nguy?n Van B,05/11/1980,Qu?ng Nam,K? Toán,8000000
-Id003,Nguy?n Van D,05/11/1980,Qu?ng Nam,K? Toán,8000000
-Id004,Nguy?n Van G,05/11/1980,Qu?ng Nam,K? Toán,8000000
-Id005,Nguy?n Van T,05/11/1980,Qu?ng Nam,K? Toán,8000000
-Id006,Nguy?n Van H,05/11/1980,Qu?ng Nam,K? Toán,8000000
-Id007,Nguy?n Van A,05/11/1980,Qu?ng Nam,K? Toán,8000000
-Id008,Nguy?n Van A,05/11/1980,Qu?ng Nam,K? Toán,8000000
-Id009,Nguy?n Van A,05/11/1980,Qu?ng Nam,K? Toán,8000000
-Id010,Nguy?n Van A,05/11/1980,Qu?ng Nam,K? Toán,8000000
-Id011,Nguy?n Van A,05/11/1980,Qu?ng Nam,K? Toán,8000000
-Id012,Nguy?n Van A,05/11/1980,Qu?ng Nam,K? Toán,8000000
-Id013,Nguy?n Van A,05/11/1980,Qu?ng Nam,K? Toán,8000000
-Id014,Nguy?n Van A,05/11/1980,Qu?ng Nam,K? Toán,8000000
-Id015,Nguy?n Van A,05/11/1980,Qu?ng Nam,K? Toán,8000000	
+IdEmployee,FullName,DateOfBirth,Address,Position,Salary
+Id001,Nguy?n Van A,05/11/1980,Quang Nam,Ke Toan,8000000
+Id002,Nguy?n Van A,05/11/1980,Quang Nam,Ke Toan,8000000
+Id003,Nguy?n Van A,05/11/1980,Quang Nam,Ke Toan,8000000
+Id004,Nguy?n Van A,05/11/1980,Quang Nam,Ke Toan,8000000
+Id005,Nguy?n Van A,05/11/1980,Quang Nam,Ke Toan,8000000
+Id006,Nguy?n Van A,05/11/1980,Quang Nam,Ke Toan,8000000
+Id007,Nguy?n Van A,05/11/1980,Quang Nam,Ke Toan,8000000
+Id008,Nguy?n Van A,05/11/1980,Quang Nam,Ke Toan,8000000
+Id009,Nguy?n Van A,05/11/1980,Quang Nam,Ke Toan,8000000
+Id010,Nguy?n Van A,05/11/1980,Quang Nam,Ke Toan,8000000
