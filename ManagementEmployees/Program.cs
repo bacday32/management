@@ -35,81 +35,13 @@ namespace ManagementEmployees
                 {
                     //add new employ in file
                     case 1:
-                        // create new  employee                   
-                        Employees newEmployee = new Employees();                        
-                        newEmployee.idEmployees = list[list.Count - 1].idEmployees++;
-                        //enter infor
-                        newEmployee.InputEmployee();
-                        //append in file            
-                        File.AppendAllText(file, "\n" + newEmployee.ToString(), Encoding.UTF8);
-                        Console.WriteLine("You have added 1 new employee!!!! ");
-                        Console.ReadLine();
+                        AddEmployee(list,file);
                         break;
                     case 2:
-                        try
-                        {
-                            Console.WriteLine("Enter id Employees you want remove:");
-                            //get in remove
-                            int idRemove = int.Parse(Console.ReadLine());
-                            // get employee with id = id remove  
-                            Employees employRemove = list.First(s => s.idEmployees == idRemove);
-                            //remove employee in list
-                            list.Remove(employRemove);
-                            //convert list employee to list string
-                            List<string> strings = list.Select(s => s.ToString()).ToList();
-                            foreach (Employees item in list)
-                            {
-                                //write list string in file
-                                File.WriteAllLines(file, strings, Encoding.UTF8);
-                            }
-                            Console.WriteLine("SUCCESSFUL!!!");
-                            Console.ReadLine();
-                            break;
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine("id Employees not exist!!!" + ex);
-                            Console.ReadLine();
-                        }
-
+                        RemoveEmployee(list,file);
                         break;
-
                     case 3:
-                        do
-                        {
-                            try
-                            {
-                                Console.WriteLine("Enter id employee you want repair: ");
-                                int idRepair = int.Parse(Console.ReadLine());
-                                //get employee have id = id repair
-                                Employees employee = list.First(s => s.idEmployees == idRepair);
-                                //get index of employee in list
-                                int index = list.IndexOf(employee);
-                                //enter infor repair
-                                Employees employeeRepair = InputRepair(employee, idRepair);
-                                //insert employee repair in list
-                                list.Insert(index, employeeRepair);
-                                //remove employee
-                                list.Remove(employee);
-                                // convert list object to list string
-                                List<string> strings = list.Select(s => s.ToString()).ToList();
-                                foreach (Employees item in list)
-                                {
-                                    //write file
-                                    File.WriteAllLines(file, strings, Encoding.UTF8);
-                                }
-                                Console.WriteLine("SUCCESSFUL!!!");
-                                Console.WriteLine(employeeRepair);
-                            }
-                            catch (Exception ex)
-                            {
-                                Console.WriteLine("id Employees not exist!!!" + ex);
-                                Console.ReadLine();
-                            }
-                            Console.ReadLine();
-                            break;
-                        }
-                        while (true);
+                        RepairEmployee(list, file);
                         break;
 
                     case 4:
@@ -119,51 +51,13 @@ namespace ManagementEmployees
                         switch (find)
                         {
                             case 1:
-                                do
-                                {
-                                    try
-                                    {
-                                        Console.WriteLine("Enter id employee you want find: ");
-                                        int idFind = int.Parse(Console.ReadLine());
-                                        //get employee with id
-                                        Employees employee = list.First(s => s.idEmployees == idFind);
-                                        Console.WriteLine(employee);
-                                        Console.ReadLine();
-                                        break;
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        Console.WriteLine("Not found!!!", ex);
-                                        Console.ReadLine();
-                                    }
-                                }
-                                while (true);
+                                FindId(list);
                                 break;
                             case 2:
-
-                                do
-                                {
-                                    try
-                                    {
-                                        Console.WriteLine("Enter name employee you want find: ");
-                                        string nameFind = Console.ReadLine();
-                                        //get employee with name
-                                        Employees employee = list.First(s => s.fullName == nameFind);
-                                        Console.WriteLine(employee);
-                                        Console.ReadLine();
-                                        break;
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        Console.WriteLine("Not found!!!", ex);
-                                        Console.ReadLine();
-                                    }
-                                }
-                                while (true);
+                                FindName(list);
                                 break;
                         }
                         break;
-
                     case 5:
                         //show list employee
                         DisplayEmployee(list);
@@ -178,38 +72,16 @@ namespace ManagementEmployees
                             Console.WriteLine("2-----Next-----");
                             Console.WriteLine("3-----Fisrt-----");
                             Console.WriteLine("4-----Last-----");
+                           
                             int num = int.Parse(Console.ReadLine());
-
-
                             //Console.WriteLine("Employee Current : " + list[indexDetail]);
                             switch (num)
                             {
-
                                 case 1:
-                                    if (indexDetail - 1 > -1)
-                                    {
-                                        var prev = list[indexDetail - 1];
-                                        Console.WriteLine(list[indexDetail - 1]);
-                                        indexDetail--;
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("<<<<<this is the first employee!!!>>>>>" + list[indexDetail]);
-                                    }
-                                    Console.ReadLine();
+                                    Prev(list, indexDetail);
                                     break;
                                 case 2:
-                                    if (indexDetail + 1 < list.Count)
-                                    {
-                                        var next = list[indexDetail + 1];
-                                        Console.WriteLine(list[indexDetail + 1]);
-                                        indexDetail++;
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine(" <<<<<this is the final employee!!!>>>>>  " + list[indexDetail]);
-                                    }
-                                    Console.ReadLine();
+                                    Next(list, indexDetail);
                                     break;
                                 case 3:
                                     Console.WriteLine(list.First());
@@ -219,6 +91,7 @@ namespace ManagementEmployees
                                     Console.WriteLine(list.Last());
                                     Console.ReadLine();
                                     break;
+                                
                                 default:
                                     break;
                             }
@@ -271,6 +144,154 @@ namespace ManagementEmployees
             employeeRepair.salary = int.Parse(Console.ReadLine());
             return employeeRepair;
         }
-
+        public static void AddEmployee(List<Employees> list,string file)
+        {
+            // create new  employee                   
+            Employees newEmployee = new Employees();
+            newEmployee.idEmployees = list[list.Count - 1].idEmployees++;
+            //enter infor
+            newEmployee.InputEmployee();
+            //append in file            
+            File.AppendAllText(file, "\n" + newEmployee.ToString(), Encoding.UTF8);
+            Console.WriteLine("You have added 1 new employee!!!! ");
+            Console.ReadLine();
+        }
+        static void RemoveEmployee(List<Employees> list,string file)
+        {
+            try
+            {
+                Console.WriteLine("Enter id Employees you want remove:");
+                //get in remove
+                int idRemove = int.Parse(Console.ReadLine());
+                // get employee with id = id remove  
+                Employees employRemove = list.First(s => s.idEmployees == idRemove);
+                //remove employee in list
+                list.Remove(employRemove);
+                //convert list employee to list string
+                List<string> strings = list.Select(s => s.ToString()).ToList();
+                foreach (Employees item in list)
+                {
+                    //write list string in file
+                    File.WriteAllLines(file, strings, Encoding.UTF8);
+                }
+                Console.WriteLine("SUCCESSFUL!!!");
+                Console.ReadLine();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("id Employees not exist!!!" + ex);
+                Console.ReadLine();
+            }
+        }
+        static void RepairEmployee(List<Employees> list,string file)
+        {
+            do
+            {
+                try
+                {
+                    Console.WriteLine("Enter id employee you want repair: ");
+                    int idRepair = int.Parse(Console.ReadLine());
+                    //get employee have id = id repair
+                    Employees employee = list.First(s => s.idEmployees == idRepair);
+                    //get index of employee in list
+                    int index = list.IndexOf(employee);
+                    //enter infor repair
+                    Employees employeeRepair = InputRepair(employee, idRepair);
+                    //insert employee repair in list
+                    list.Insert(index, employeeRepair);
+                    //remove employee
+                    list.Remove(employee);
+                    // convert list object to list string
+                    List<string> strings = list.Select(s => s.ToString()).ToList();
+                    foreach (Employees item in list)
+                    {
+                        //write file
+                        File.WriteAllLines(file, strings, Encoding.UTF8);
+                    }
+                    Console.WriteLine("SUCCESSFUL!!!");
+                    Console.WriteLine(employeeRepair);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("id Employees not exist!!!" + ex);
+                    Console.ReadLine();
+                }
+                Console.ReadLine();
+                break;
+            }
+            while (true);
+        }
+        static void FindId(List<Employees> list)
+        {
+            do
+            {
+                try
+                {
+                    Console.WriteLine("Enter id employee you want find: ");
+                    int idFind = int.Parse(Console.ReadLine());
+                    //get employee with id
+                    Employees employee = list.First(s => s.idEmployees == idFind);
+                    Console.WriteLine(employee);
+                    Console.ReadLine();
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Not found!!!", ex);
+                    Console.ReadLine();
+                }
+            }
+            while (true);
+        }
+        static void FindName(List<Employees> list)
+        {
+            do
+            {
+                try
+                {
+                    Console.WriteLine("Enter name employee you want find: ");
+                    string nameFind = Console.ReadLine();
+                    //get employee with name
+                    Employees employee = list.First(s => s.fullName == nameFind);
+                    Console.WriteLine(employee);
+                    Console.ReadLine();
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Not found!!!", ex);
+                    Console.ReadLine();
+                }
+            }
+            while (true);
+        }
+        static void Prev(List<Employees> list,int indexDetail)
+        {
+            if (indexDetail - 1 > -1)
+            {
+                var prev = list[indexDetail - 1];
+                Console.WriteLine(list[indexDetail - 1]);
+                indexDetail--;
+            }
+            else
+            {
+                Console.WriteLine("<<<<<this is the first employee!!!>>>>>" + list[indexDetail]);
+            }
+            Console.ReadLine();
+        }
+        static void Next(List<Employees> list,int indexDetail)
+        {
+            if (indexDetail + 1 < list.Count)
+            {
+                var next = list[indexDetail + 1];
+                Console.WriteLine(list[indexDetail + 1]);
+                indexDetail++;
+            }
+            else
+            {
+                Console.WriteLine(" <<<<<this is the final employee!!!>>>>>  " + list[indexDetail]);
+            }
+            Console.ReadLine();
+        }
     }
 }
