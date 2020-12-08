@@ -17,7 +17,7 @@ namespace ManagementEmployees
             //create list contain object employess
             List<Employees> list = new List<Employees>();
             // read file csv
-            string file = @"C:\Users\Desktop-win-bac\Documents\Visual Studio 2015\Projects\ManagementEmployees\InforEmployee.csv";
+            string file = @"InforEmployee.csv";
 
             var filePath = File.ReadAllLines(file);
             //loop file , get value add in list
@@ -37,24 +37,31 @@ namespace ManagementEmployees
                     case 1:
                         AddEmployee(list,file);
                         break;
+                    //remove employee
                     case 2:
                         RemoveEmployee(list,file);
                         break;
+                    //repair employee
                     case 3:
-                        RepairEmployee(list, file);
+                        ModifyEmployee(list, file);
                         break;
-
+                    //fine employee
                     case 4:
+                    
                         Console.WriteLine("1:find employees by id?");
                         Console.WriteLine("2:find employees by name?");
                         int find = int.Parse(Console.ReadLine());
                         switch (find)
-                        {
+                        {   
+                            //find with id
                             case 1:
-                                FindId(list);
+                                FindById(list);
                                 break;
+                            //find with name
                             case 2:
-                                FindName(list);
+                                FindByName(list);
+                                break;
+                            default:
                                 break;
                         }
                         break;
@@ -73,8 +80,7 @@ namespace ManagementEmployees
                             Console.WriteLine("3-----Fisrt-----");
                             Console.WriteLine("4-----Last-----");
                            
-                            int num = int.Parse(Console.ReadLine());
-                            //Console.WriteLine("Employee Current : " + list[indexDetail]);
+                            int num = int.Parse(Console.ReadLine());                           
                             switch (num)
                             {
                                 case 1:
@@ -90,8 +96,7 @@ namespace ManagementEmployees
                                 case 4:
                                     Console.WriteLine(list.Last());
                                     Console.ReadLine();
-                                    break;
-                                
+                                    break;                                
                                 default:
                                     break;
                             }
@@ -125,7 +130,6 @@ namespace ManagementEmployees
             Console.WriteLine("5:-----Show list Employees-----");
             Console.WriteLine("6:-----Detail employee-----");
             Console.WriteLine("7:-----Exit-----");
-
         }
         static Employees InputRepair(Employees employee, int idRepair)
         {
@@ -150,7 +154,7 @@ namespace ManagementEmployees
             Employees newEmployee = new Employees();
             newEmployee.idEmployees = list[list.Count - 1].idEmployees++;
             //enter infor
-            newEmployee.InputEmployee();
+            newEmployee.AddNewEmployee();
             //append in file            
             File.AppendAllText(file, "\n" + newEmployee.ToString(), Encoding.UTF8);
             Console.WriteLine("You have added 1 new employee!!!! ");
@@ -174,7 +178,7 @@ namespace ManagementEmployees
                     //write list string in file
                     File.WriteAllLines(file, strings, Encoding.UTF8);
                 }
-                Console.WriteLine("SUCCESSFUL!!!");
+                Console.WriteLine("<<<<<SUCCESSFUL!!!>>>>>");
                 Console.ReadLine();
             }
             catch (Exception ex)
@@ -183,7 +187,7 @@ namespace ManagementEmployees
                 Console.ReadLine();
             }
         }
-        static void RepairEmployee(List<Employees> list,string file)
+        static void ModifyEmployee(List<Employees> list,string file)
         {
             do
             {
@@ -208,12 +212,12 @@ namespace ManagementEmployees
                         //write file
                         File.WriteAllLines(file, strings, Encoding.UTF8);
                     }
-                    Console.WriteLine("SUCCESSFUL!!!");
+                    Console.WriteLine("<<<<<SUCCESSFUL!!!>>>>>");
                     Console.WriteLine(employeeRepair);
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("id Employees not exist!!!" + ex);
+                    Console.WriteLine(">>>>>id Employees not exist!!!" + ex);
                     Console.ReadLine();
                 }
                 Console.ReadLine();
@@ -221,13 +225,13 @@ namespace ManagementEmployees
             }
             while (true);
         }
-        static void FindId(List<Employees> list)
+        static void FindById(List<Employees> list)
         {
             do
             {
                 try
                 {
-                    Console.WriteLine("Enter id employee you want find: ");
+                    Console.WriteLine(">>>>>Enter id employee you want find: ");
                     int idFind = int.Parse(Console.ReadLine());
                     //get employee with id
                     Employees employee = list.First(s => s.idEmployees == idFind);
@@ -237,19 +241,19 @@ namespace ManagementEmployees
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Not found!!!", ex);
+                    Console.WriteLine(">>>>>Not found!!!", ex);
                     Console.ReadLine();
                 }
             }
             while (true);
         }
-        static void FindName(List<Employees> list)
+        static void FindByName(List<Employees> list)
         {
             do
             {
                 try
                 {
-                    Console.WriteLine("Enter name employee you want find: ");
+                    Console.WriteLine(">>>>>Enter name employee you want find: ");
                     string nameFind = Console.ReadLine();
                     //get employee with name
                     Employees employee = list.First(s => s.fullName == nameFind);
@@ -259,7 +263,7 @@ namespace ManagementEmployees
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Not found!!!", ex);
+                    Console.WriteLine(">>>>>Not found!!!", ex);
                     Console.ReadLine();
                 }
             }
@@ -294,4 +298,5 @@ namespace ManagementEmployees
             Console.ReadLine();
         }
     }
+   
 }

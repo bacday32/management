@@ -26,9 +26,8 @@ namespace ManagementEmployees
         public Employees()
         {
         }
-
-        public void InputEmployee()
-        {           
+        public void AddNewEmployee()
+        {
             Console.WriteLine("Enter full name employees :");
             this.fullName = Convert.ToString(Console.ReadLine());
             Console.WriteLine("Enter date of birthday employees :");
@@ -39,16 +38,15 @@ namespace ManagementEmployees
             this.position = Convert.ToString(Console.ReadLine());
             Console.WriteLine("Enter salary employees :");
             this.salary = int.Parse(Console.ReadLine());
-        } 
+        }
         public void Display()
         {
             Console.WriteLine("id employees : {0},full name :{1}, date of birthday: {2},address: {3},postion: {4} , salary: {5}", idEmployees, fullName, dateOfBirth, address, position, salary);
         }
         public override string ToString()
-        { 
-            return this.idEmployees + ","+this.fullName+","+this.dateOfBirth+","+this.address+","+this.position+","+this.salary;
+        {
+            return this.idEmployees + "," + this.fullName + "," + this.dateOfBirth + "," + this.address + "," + this.position + "," + this.salary;
         }
-
     }
 
 
